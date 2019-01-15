@@ -1,4 +1,7 @@
 <!-- THIS FORM INCLUDES JAVASCRIPT THAT CONTROLS CONDITIONAL HIDING/SHOWING OF FIELDS. PLEASE BE CAREFUL EDITING-->
+<!-- THIS SECTION GETS INPUT INTO CONTACT FORM 7 and IS HTML -->
+<!-- SCROLL DOWN FOR JAVASCRIPT PART -->
+
 Sign Location:
 [select signLocation id:signLocation "Select One" "Indoor" "Outdoor" "Vehicle" "Other"]
 
@@ -117,7 +120,9 @@ Select Vehicle Type:
 
 
 <!-- BELOW IS THE JAVASCRIPT CODE -->
+
 <script language="javascript" type="text/javascript">
+//THIS SECTION IS JUST LISTEING FOR THE FIRST DROP DOWN TO BE SELECTED AND HIDING ALL ELEMENTS 
 document.getElementById("signLocation").addEventListener("change", displayVehicleSelection);
   document.getElementById("vehicleSelection").style.display = "none";
   document.getElementById("wrapOptions").style.display = "none";
@@ -127,10 +132,10 @@ document.getElementById("signLocation").addEventListener("change", displayVehicl
   document.getElementById("outdoorWallMountedOptions").style.display = "none";
   document.getElementById("outdoorWallMountWallOptions").style.display = "none";  
   document.getElementById("dibond").style.display = "none";
-  function displayVehicleSelection() {	
-	// Get the value of the selected drop down
+  // GET THE VALUE OF THE SELECTED DROP DOWN
+  function displayVehicleSelection() {		
 	var dropDownTextSignLocation =  document.getElementById("signLocation").value;
-    // If selected text matches 'Vehicle', display the next drop down list.    
+    // IF THE 1ST DROP DOWN SELECTED ITEM IS "VEHICLE", DISPLAY THE NEXT OPTION FOR VEHICLE WHILE HIDING THE REST
 	switch(dropDownTextSignLocation) {
 		case 'Vehicle':
 			document.getElementById("vehicleSelection").style.display = "block";
@@ -138,27 +143,30 @@ document.getElementById("signLocation").addEventListener("change", displayVehicl
 			document.getElementById("outdoorWallMountedOptions").style.display = "none";
 			document.getElementById("dibond").style.display = "none";
 			document.getElementById("outdoorWallMountWallOptions").style.display = "none";
+			// EVENT LISTENER FOR 2ND DROP DOWN OPTION FOR "VEHICLE"
 			document.getElementById("vehicleTypeSelect").addEventListener("change", displayWrapOptions);
-				function displayWrapOptions() {
+				function displayWrapOptions() {					
 					var dropDownTextVehicleType =  document.getElementById("vehicleTypeSelect").value;
 					switch(dropDownTextVehicleType) {
-						case 'Van':
+						// IF THE 2ND DROP DOWN FROM "VEHICLE" SECTION IS "VAN" DISPLAY THE NEXT DROP DOWN WHILE HIDING THE REST
+						case 'Van':							
 							document.getElementById("wrapOptions").style.display = "block";
-							document.getElementById('wrapOptions').addEventListener("change", displayFullWrapInfo);
-								//**document.getElementById("fullWrap").style.display = "none";
-								//**document.getElementById('wrapOptions').addEventListener('click', displayFullWrapInfo);
-								function displayFullWrapInfo() {
-								// Get the value of the currently selected imageradio button. 'radio-312' is the name of the radio buttons you specify in the form builder
+							// EVENT LISTENER FOR 3RD OPTION ON VEHICLE. DISPLAY THE LAST OPTION BASED ON IMAGE RADIO SELECTION. IMAGERADIO IS A CUSTOM RADIO BUTTON THAT IS BEING CALLED FROM FUNCTIONS.PHP & STYLE.CSS
+							document.getElementById('wrapOptions').addEventListener("change", displayFullWrapInfo);								
+								function displayFullWrapInfo() {								
 									var wrapSelected = document.querySelector('input[name="radio-312"]:checked').value;
 									switch (wrapSelected) {
+									//DISPLAY INFO FOR FULL WRAP VEHICLES WHILE HIDING THE REST
 									case "FullWrapVehicle":
 										document.getElementById("partialWrap").style.display = "none";
 										document.getElementById("fullWrap").style.display = "block";										
 										break;
-									case "PartialWrapVehicle":
+									//DISPLAY INFO FOR PARTIAL WRAP VEHICLES WHILE HIDING THE REST
+									case "PartialWrapVehicle":										
 										document.getElementById("partialWrap").style.display = "block";
 										document.getElementById("fullWrap").style.display = "none";
 										break;
+									//DISPLAY INFO FOR VEHICLES DECALS WHILE HIDING THE REST
 									case "Decals":
 										document.getElementById("fullWrap").style.display = 'none';
 										document.getElementById("partialWrap").style.display = 'none';
@@ -169,42 +177,52 @@ document.getElementById("signLocation").addEventListener("change", displayVehicl
 					}
 				}			
 			break;
-		case 'Outdoor':
+		// IF THE 1ST DROP DOWN SELECTED ITEM IS "OUTDOOR", DISPLAY THE NEXT OPTION FOR OUTDOOR WHILE HIDING THE REST
+		case 'Outdoor':		
 			document.getElementById("outdoorMountingOptions").style.display = "block";
 			document.getElementById("vehicleSelection").style.display = "none";
 			document.getElementById("wrapOptions").style.display = "none";
 			document.getElementById("fullWrap").style.display = "none";
 			document.getElementById("partialWrap").style.display = "none";
-			document.getElementById("outdoorMountingSelect").addEventListener("change", displayOutdoorMountSelectOpts);
-				function displayOutdoorMountSelectOpts () {
+			// EVENT LISTENER FOR THE 2ND DROP DOWN OPTION FOR "OUTDOOR"
+			document.getElementById("outdoorMountingSelect").addEventListener("change", displayOutdoorMountSelectOpts); 
+				function displayOutdoorMountSelectOpts () {					
 					var dropDownOutdoorMountType = document.getElementById("outdoorMountingSelect").value;
 					switch(dropDownOutdoorMountType) {
-						case 'Wall Mounted':
+						// IF THE 2ND DROP DOWN FROM "OUTDOOR" SECTION IS "WALL MOUNTED" DISPLAY THE NEXT DROP DOWN WHILE HIDING THE REST
+						case 'Wall Mounted':							
 							document.getElementById("outdoorWallMountedOptions").style.display = "block";
+							// EVENT LISTENER FOR THE 3ND DROP DOWN OPTION FOR "OUTDOOR"
 							document.getElementById("signFeautureOne").addEventListener("change", displayOutDoorFeature);
 								function displayOutDoorFeature() {
 									var displayOutDoorFeatures = document.getElementById("signFeautureOne").value;
 									switch(displayOutDoorFeatures) {
+										// IF THE 3RD DROP DOWN FROM "OUTDOOR" SECTION IS "FLAT SIGNS" DISPLAY THE NEXT DROP DOWN. NEED TO CODE TO HIDE THE REST.
 										case 'Flat Signs':
 											document.getElementById("outdoorWallMountWallOptions").style.display = "block";
+											// EVENT LISTENER FOR THE 4TH DROP DOWN OPTION FOR "OUTDOOR"
 											document.getElementById("outdoorwallType").addEventListener("change", displayOutdoorConcrete);
 												function displayOutdoorConcrete() {
 													var displayOutDoorWallType = document.getElementById("outdoorwallType").value;
 													switch(displayOutDoorWallType) {
+														// IF THE 4TH DROP DOWN FROM "OUTDOOR" SECTION IS "CONCRETE WALL" DISPLAY THE INFO FOR CONCRETE WALL. NEED TO CODE TO HIDE THE REST
 														case 'Concrete Wall':
 															document.getElementById("dibond").style.display = "block";
 														break;
 													}
 												}
 										break
+										// IF THE 3RD DROP DOWN FROM "OUTDOOR" SECTION IS "PLEASE SELECT" 
 										case 'Please Select':
 											document.getElementById("outdoorWallMountWallOptions").style.display = "none";
 											document.getElementById("dibond").style.display = "none";
 										break
+										// IF THE 3RD DROP DOWN FROM "OUTDOOR" SECTION IS "DIMENSIONAL SIGNS" 
 										case 'Dimensional Signs':
 											document.getElementById("outdoorWallMountWallOptions").style.display = "none";
 											document.getElementById("dibond").style.display = "none";
 										break
+										// IF THE 3RD DROP DOWN FROM "OUTDOOR" SECTION IS "ILLUMINATED SIGNS" 
 										case 'Illuminated Signs':
 											document.getElementById("outdoorWallMountWallOptions").style.display = "none";
 											document.getElementById("dibond").style.display = "none";
@@ -212,14 +230,17 @@ document.getElementById("signLocation").addEventListener("change", displayVehicl
 									}
 								}
 						break;
+						// IF THE 2ND DROP DOWN FROM "OUTDOOR" SECTION IS "SELF STANDING"
 						case 'Self Standing':
 							document.getElementById("outdoorWallMountedOptions").style.display = "none";
 							document.getElementById("dibond").style.display = "none";
 						break;
+						// IF THE 2ND DROP DOWN FROM "OUTDOOR" SECTION IS "WINDOW"
 						case 'Window':
 							document.getElementById("outdoorWallMountedOptions").style.display = "none";
 							document.getElementById("dibond").style.display = "none";
 						break;
+						// IF THE 2ND DROP DOWN FROM "OUTDOOR" SECTION IS "PLEASE SELECT"
 						case 'Please Select':
 							document.getElementById("outdoorWallMountedOptions").style.display = "none";
 							document.getElementById("dibond").style.display = "none";
