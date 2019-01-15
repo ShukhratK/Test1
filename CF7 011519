@@ -1,0 +1,274 @@
+<!-- THIS FORM INCLUDES JAVASCRIPT THAT CONTROLS CONDITIONAL HIDING/SHOWING OF FIELDS. PLEASE BE CAREFUL EDITING-->
+Sign Location:
+[select signLocation id:signLocation "Select One" "Indoor" "Outdoor" "Vehicle" "Other"]
+
+
+
+<div id="outdoorMountingOptions">
+How will you display your sign?
+[select outdoorMountingSelect id:outdoorMountingSelect "Please Select" "Wall Mounted" "Self Standing" "Window" "Door" "Hanging from a Ceiling" "Table or Countertop"]
+</div>
+
+
+
+<div id="outdoorWallMountedOptions">
+Please select what type of sign you are interested in.
+[select signFeautureOne id:signFeautureOne "Please Select" "Flat Signs" "Dimensional Signs" "Illuminated Signs"]
+</div>
+
+
+
+<div id="outdoorWallMountWallOptions">
+What type of wall will your sign be attached to?
+[select outdoorwallType id:outdoorwallType "Please Select" "Concrete Wall" "Brick Wall" "Metal Wall" "Stucko Wall" "Wood Siding" "Metal Siding" "I Don't Know"]
+</div>
+
+
+
+
+<div id="vehicleSelection">
+Select Vehicle Type:
+[select* vehicleTypeSelect id:vehicleTypeSelect "Please Select" "Car" "Pickup Truck" "Box Truck" "Van" "Trailer" "Tractor Trailer" "Boat" "Other" "SUV"]
+</div>
+
+
+
+<div id="wrapOptions">
+[imageradio radio-312 
+"FullWrapVehicle!http://localhost/spi/wp-content/uploads/2019/01/FullWrap.jpg" 
+"PartialWrapVehicle!http://localhost/spi/wp-content/uploads/2019/01/FullWrap2.jpg" 
+"Decals!http://localhost/spi/wp-content/uploads/2019/01/FullWrap3.jpg"
+]
+</div>
+
+
+
+<div id="dibond" class="vc_row wpb_row vc_row-fluid">
+	<div class="wpb_column vc_column_container vc_col-sm-6">
+		<div class="vc_column-inner">
+			<div class="wpb_wrapper">
+				<img src="http://localhost/spi/wp-content/uploads/2019/01/After-15smaller.jpg" alt="Full Wrap" aling"right">
+			</div>
+		</div>
+	</div>
+	<div class="wpb_column vc_column_container vc_col-sm-6">
+		<div class="vc_column-inner">
+			<div class="wpb_wrapper">
+				<h3>Dibond Signs</h3>
+				<p>Dibond is a High-Strength Aluminum Sign Panel, Ideal for Large & Small, Interior & Exterior Signs. Dibond is so strong, these weather-resistant, aluminum panels are commonly used in commercial building architecture.</p>
+				<ul>
+				<li>An aluminum sign panel that has a SOLID plastic core.</li>
+				<li>High tolerance for cold and hot weather temperature extremes and heavy percipitation.</li>
+				<li>Any design, artwork, photo or logo can be used for your custom Dibond Sign.</li>
+				<li>Any shape, any size and virtually any color you want.</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div id="fullWrap" class="vc_row wpb_row vc_row-fluid">
+	<div class="wpb_column vc_column_container vc_col-sm-6">
+		<div class="vc_column-inner">
+			<div class="wpb_wrapper">
+				<img src="http://localhost/spi/wp-content/uploads/2019/01/KrispyKrunchyChicken.jpg" alt="Full Wrap" aling"right">
+			</div>
+		</div>
+	</div>
+	<div class="wpb_column vc_column_container vc_col-sm-6">
+		<div class="vc_column-inner">
+			<div class="wpb_wrapper">
+				<p>A full vehicle wrap is just that — a vinyl wrap that covers your entire vehicle. From front to back, top to bottom, you’re making a big splash with vinyl graphics. Because it covers more surface area than a partial wrap and involves more details, a full vehicle wrap is more expensive than a partial vehicle wrap.</p>
+				<ul>
+				<li>Most Vibrant</li>
+				<li>Not the most economical</li>
+				<li><a href="http://localhost/spi/vehicle-wraps/" rel="noopener" target="_blank">Learn More</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div id="partialWrap" class="vc_row wpb_row vc_row-fluid">
+	<div class="wpb_column vc_column_container vc_col-sm-6">
+		<div class="vc_column-inner">
+			<div class="wpb_wrapper">
+				<img src="http://localhost/spi/wp-content/uploads/2019/01/28847TheGroundGuys.jpg" alt="Partial Wrap" aling"right">
+			</div>
+		</div>
+	</div>
+	<div class="wpb_column vc_column_container vc_col-sm-6">
+		<div class="vc_column-inner">
+			<div class="wpb_wrapper">
+				<p> Because it covers more surface area than a partial wrap and involves more details, a full vehicle wrap is more expensive than a partial vehicle wrap.</p>
+				<ul>
+				<li>Most Vibrant</li>
+				<li>Not the most economical</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+
+
+<!-- BELOW IS THE JAVASCRIPT CODE -->
+<script language="javascript" type="text/javascript">
+document.getElementById("signLocation").addEventListener("change", displayVehicleSelection);
+  document.getElementById("vehicleSelection").style.display = "none";
+  document.getElementById("wrapOptions").style.display = "none";
+  document.getElementById("outdoorMountingOptions").style.display = "none";
+  document.getElementById("fullWrap").style.display = "none";
+  document.getElementById("partialWrap").style.display = "none";
+  document.getElementById("outdoorWallMountedOptions").style.display = "none";
+  document.getElementById("outdoorWallMountWallOptions").style.display = "none";  
+  document.getElementById("dibond").style.display = "none";
+  function displayVehicleSelection() {	
+	// Get the value of the selected drop down
+	var dropDownTextSignLocation =  document.getElementById("signLocation").value;
+    // If selected text matches 'Vehicle', display the next drop down list.    
+	switch(dropDownTextSignLocation) {
+		case 'Vehicle':
+			document.getElementById("vehicleSelection").style.display = "block";
+			document.getElementById("outdoorMountingOptions").style.display = "none";
+			document.getElementById("outdoorWallMountedOptions").style.display = "none";
+			document.getElementById("dibond").style.display = "none";
+			document.getElementById("outdoorWallMountWallOptions").style.display = "none";
+			document.getElementById("vehicleTypeSelect").addEventListener("change", displayWrapOptions);
+				function displayWrapOptions() {
+					var dropDownTextVehicleType =  document.getElementById("vehicleTypeSelect").value;
+					switch(dropDownTextVehicleType) {
+						case 'Van':
+							document.getElementById("wrapOptions").style.display = "block";
+							document.getElementById('wrapOptions').addEventListener("change", displayFullWrapInfo);
+								//**document.getElementById("fullWrap").style.display = "none";
+								//**document.getElementById('wrapOptions').addEventListener('click', displayFullWrapInfo);
+								function displayFullWrapInfo() {
+								// Get the value of the currently selected imageradio button. 'radio-312' is the name of the radio buttons you specify in the form builder
+									var wrapSelected = document.querySelector('input[name="radio-312"]:checked').value;
+									switch (wrapSelected) {
+									case "FullWrapVehicle":
+										document.getElementById("partialWrap").style.display = "none";
+										document.getElementById("fullWrap").style.display = "block";										
+										break;
+									case "PartialWrapVehicle":
+										document.getElementById("partialWrap").style.display = "block";
+										document.getElementById("fullWrap").style.display = "none";
+										break;
+									case "Decals":
+										document.getElementById("fullWrap").style.display = 'none';
+										document.getElementById("partialWrap").style.display = 'none';
+										break;
+									}
+								}
+						break;
+					}
+				}			
+			break;
+		case 'Outdoor':
+			document.getElementById("outdoorMountingOptions").style.display = "block";
+			document.getElementById("vehicleSelection").style.display = "none";
+			document.getElementById("wrapOptions").style.display = "none";
+			document.getElementById("fullWrap").style.display = "none";
+			document.getElementById("partialWrap").style.display = "none";
+			document.getElementById("outdoorMountingSelect").addEventListener("change", displayOutdoorMountSelectOpts);
+				function displayOutdoorMountSelectOpts () {
+					var dropDownOutdoorMountType = document.getElementById("outdoorMountingSelect").value;
+					switch(dropDownOutdoorMountType) {
+						case 'Wall Mounted':
+							document.getElementById("outdoorWallMountedOptions").style.display = "block";
+							document.getElementById("signFeautureOne").addEventListener("change", displayOutDoorFeature);
+								function displayOutDoorFeature() {
+									var displayOutDoorFeatures = document.getElementById("signFeautureOne").value;
+									switch(displayOutDoorFeatures) {
+										case 'Flat Signs':
+											document.getElementById("outdoorWallMountWallOptions").style.display = "block";
+											document.getElementById("outdoorwallType").addEventListener("change", displayOutdoorConcrete);
+												function displayOutdoorConcrete() {
+													var displayOutDoorWallType = document.getElementById("outdoorwallType").value;
+													switch(displayOutDoorWallType) {
+														case 'Concrete Wall':
+															document.getElementById("dibond").style.display = "block";
+														break;
+													}
+												}
+										break
+										case 'Please Select':
+											document.getElementById("outdoorWallMountWallOptions").style.display = "none";
+											document.getElementById("dibond").style.display = "none";
+										break
+										case 'Dimensional Signs':
+											document.getElementById("outdoorWallMountWallOptions").style.display = "none";
+											document.getElementById("dibond").style.display = "none";
+										break
+										case 'Illuminated Signs':
+											document.getElementById("outdoorWallMountWallOptions").style.display = "none";
+											document.getElementById("dibond").style.display = "none";
+										break
+									}
+								}
+						break;
+						case 'Self Standing':
+							document.getElementById("outdoorWallMountedOptions").style.display = "none";
+							document.getElementById("dibond").style.display = "none";
+						break;
+						case 'Window':
+							document.getElementById("outdoorWallMountedOptions").style.display = "none";
+							document.getElementById("dibond").style.display = "none";
+						break;
+						case 'Please Select':
+							document.getElementById("outdoorWallMountedOptions").style.display = "none";
+							document.getElementById("dibond").style.display = "none";
+						break;
+						case 'Door':
+							document.getElementById("outdoorWallMountedOptions").style.display = "none";
+							document.getElementById("dibond").style.display = "none";
+						break;
+						case 'Hanging from a Ceiling':
+							document.getElementById("outdoorWallMountedOptions").style.display = "none";
+							document.getElementById("dibond").style.display = "none";
+						break;
+						case 'Table or Countertop':
+							document.getElementById("outdoorWallMountedOptions").style.display = "none";
+							document.getElementById("dibond").style.display = "none";
+						break;
+							}
+						}
+					break;
+		case 'Select One':
+			document.getElementById("vehicleSelection").style.display = "none";
+			document.getElementById("outdoorMountingOptions").style.display = "none";
+			document.getElementById("wrapOptions").style.display = "none";
+			document.getElementById("fullWrap").style.display = "none";
+			document.getElementById("partialWrap").style.display = "none";
+			document.getElementById("outdoorWallMountedOptions").style.display = "none";
+			document.getElementById("outdoorWallMountWallOptions").style.display = "none";
+			document.getElementById("dibond").style.display = "none";
+		break;
+		case 'Indoor':
+			document.getElementById("vehicleSelection").style.display = "none";
+			document.getElementById("outdoorMountingOptions").style.display = "none";
+			document.getElementById("wrapOptions").style.display = "none";
+			document.getElementById("fullWrap").style.display = "none";
+			document.getElementById("partialWrap").style.display = "none";
+			document.getElementById("outdoorWallMountedOptions").style.display = "none";
+			document.getElementById("outdoorWallMountWallOptions").style.display = "none";
+			document.getElementById("dibond").style.display = "none";
+		break;
+		default:
+			document.getElementById("vehicleSelection").style.display = "none";
+			document.getElementById("outdoorMountingOptions").style.display = "none";
+			document.getElementById("wrapOptions").style.display = "none";
+			document.getElementById("fullWrap").style.display = "none";
+			document.getElementById("partialWrap").style.display = "none";
+			document.getElementById("outdoorWallMountedOptions").style.display = "none";
+			document.getElementById("outdoorWallMountWallOptions").style.display = "none";
+			document.getElementById("dibond").style.display = "none";;
+		break;
+	}
+	}
+</script>
